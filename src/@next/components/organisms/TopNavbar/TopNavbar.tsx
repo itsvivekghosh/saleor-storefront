@@ -9,8 +9,8 @@ import { Icon, NavLink } from "@components/atoms";
 import { mediumScreen, smallScreen } from "@styles/constants";
 import { maybe } from "@utils/misc";
 
-import LogoSmall from "images/logo-small.svg";
-import Logo from "images/logo.svg";
+import LogoSmall from "images/logo-small.png";
+import Logo from "images/logo.png";
 
 import { Dropdown } from "./Dropdown";
 import * as S from "./styles";
@@ -112,10 +112,12 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
         </S.Navigation>
         <S.Center>
           <Media maxWidth={smallScreen}>
-            <S.LogoWrapper path={LogoSmall} />
+            <S.LogoWrapper src={LogoSmall} />
+            {/* <img src={LogoSmall} /> */}
           </Media>
           <Media minWidth={smallScreen}>
-            <S.LogoWrapper path={Logo} />
+            {/* <img src={Logo} /> */}
+            <S.LogoWrapper src={Logo} />
           </Media>
         </S.Center>
         <S.Actions>

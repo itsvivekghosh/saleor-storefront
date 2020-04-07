@@ -1,5 +1,4 @@
 import { media, styled } from "@styles";
-import ReactSVG from "react-svg";
 
 export const NAVBAR_HEIGHT = "3.55rem";
 
@@ -36,20 +35,19 @@ export const Actions = styled(Tile)`
   justify-content: flex-end;
 `;
 
-export const LogoWrapper = styled(ReactSVG)`
+export const LogoWrapper = styled.img`
   line-height: 0;
 
-  svg {
-    width: 6rem;
+  width: 6rem;
 
-    ${media.mediumScreen`
-      width: 4rem;
-    `}
+  ${media.mediumScreen`
+    width: 4rem;
+  `}
 
-    ${media.mediumScreen`
-      height: 30px;
-    `}
-  }
+  ${media.mediumScreen`
+    height: 30px;
+  `}
+
 `;
 
 export const IconWrapper = styled.button`
