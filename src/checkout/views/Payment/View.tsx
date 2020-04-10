@@ -1,6 +1,9 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { MutationFn } from "react-apollo";
 import { generatePath, RouteComponentProps } from "react-router";
+import { CountryCode } from "types/globalTypes";
 
 import { Checkbox } from "@components/atoms";
 import { DiscountForm } from "@components/organisms";
@@ -21,12 +24,10 @@ import {
 import { reviewUrl } from "../../routes";
 import CreditCard from "./Gateways/Braintree/CreditCard";
 import Dummy from "./Gateways/Dummy";
+import RazorpayForm from "./Gateways/Razorpay/Razorpay";
 import { Stripe } from "./Gateways/Stripe";
 import { TypedPaymentMethodCreateMutation } from "./queries";
-import "./scss/index.scss";
 import { createPayment, createPaymentVariables } from "./types/createPayment";
-
-import { CountryCode } from "types/globalTypes";
 
 export interface ProviderProps {
   loading: boolean;
@@ -203,6 +204,9 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
           <TypedPaymentMethodCreateMutation onCompleted={proceedNext}>
             {(createPaymentMethod, { loading: paymentCreateLoading }) => {
               const { availablePaymentGateways } = checkout.checkout;
+              if (availablePaymentGateways.length === 1) {
+                setSelectedGeteway(availablePaymentGateways[0].name);
+              }
               const processPayment = makeProcessPayment(
                 createPaymentMethod,
                 checkout
@@ -252,6 +256,16 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                         return (
                           <Option label="Stripe" {...optionProps(providerName)}>
                             <Stripe {...paymentGatewayProps} />
+                          </Option>
+                        );
+
+                      case PROVIDERS.RAZORPAY:
+                        return (
+                          <Option
+                            label="Razorpay Payment Gateway"
+                            {...optionProps(providerName)}
+                          >
+                            <RazorpayForm {...paymentGatewayProps} />
                           </Option>
                         );
                     }
