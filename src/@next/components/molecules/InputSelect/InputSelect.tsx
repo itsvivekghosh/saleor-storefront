@@ -59,25 +59,31 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
     },
     IndicatorSeparator: () => null,
     IndicatorsContainer: ({ selectProps, hasValue, clearValue }: any) => {
-      const showClearIndicator =
-        selectProps.isClearable ||
-        (selectProps.isMulti && selectProps.isClearable === undefined);
+      return (
+        <S.DropdownIndicator rotate={String(selectProps.menuIsOpen)}>
+          <Icon name="select_arrow" size={10} />
+        </S.DropdownIndicator>
+      );
 
-      if (showClearIndicator && hasValue) {
-        return (
-          <S.ClearIndicator onClick={clearValue}>
-            <Icon name="select_x" size={10} />
-          </S.ClearIndicator>
-        );
-      } else {
-        // Boolean to string conversion done due to
-        // https://github.com/styled-components/styled-components/issues/1198
-        return (
-          <S.DropdownIndicator rotate={String(selectProps.menuIsOpen)}>
-            <Icon name="select_arrow" size={10} />
-          </S.DropdownIndicator>
-        );
-      }
+      // const showClearIndicator =
+      //   selectProps.isClearable ||
+      //   (selectProps.isMulti && selectProps.isClearable === undefined);
+
+      // if (showClearIndicator && hasValue) {
+      //   return (
+      //     <S.ClearIndicator onClick={clearValue}>
+      //       <Icon name="select_x" size={10} />
+      //     </S.ClearIndicator>
+      //   );
+      // } else {
+      //   // Boolean to string conversion done due to
+      //   // https://github.com/styled-components/styled-components/issues/1198
+      //   return (
+      //     <S.DropdownIndicator rotate={String(selectProps.menuIsOpen)}>
+      //       <Icon name="select_arrow" size={10} />
+      //     </S.DropdownIndicator>
+      //   );
+      // }
     },
     Option: (props: any) => {
       const customTheme = React.useContext(ThemeContext);

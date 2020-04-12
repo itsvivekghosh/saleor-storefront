@@ -128,7 +128,7 @@ class ProductDescription extends React.Component<
           <ProductVariantPicker
             productVariants={this.props.productVariants}
             onChange={this.onVariantPickerChange}
-            selectSidebar={true}
+            selectSidebar={false}
           />
         </div>
         <div className="product-description__quantity-input">

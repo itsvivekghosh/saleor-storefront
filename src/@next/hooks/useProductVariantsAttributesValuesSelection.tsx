@@ -66,6 +66,22 @@ export const useProductVariantsAttributesValuesSelection = (
     );
   };
 
+  // Select the variant value if there is just one
+  if (
+    !Object.keys(productVariantsAttributesSelectedValues).length &&
+    Object.keys(productVariantsAttributes).length === 1 &&
+    productVariantsAttributes[Object.keys(productVariantsAttributes)[0]].values
+      .length === 1
+  ) {
+    const productVariantsAttributeId = Object.keys(
+      productVariantsAttributes
+    )[0];
+    selectProductVariantsAttributesValue(
+      productVariantsAttributeId,
+      productVariantsAttributes[productVariantsAttributeId].values[0].value
+    );
+  }
+
   return [
     productVariantsAttributesSelectedValues,
     selectProductVariantsAttributesValue,
