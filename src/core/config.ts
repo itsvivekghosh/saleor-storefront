@@ -11,8 +11,12 @@ export const PROVIDERS = {
 };
 export const STATIC_PAGES = [
   {
-    label: "About",
-    url: generatePageUrl("about"),
+    label: "Privacy Policy",
+    url: generatePageUrl("privacy-policy"),
+  },
+  {
+    label: "Terms and Conditions",
+    url: generatePageUrl("terms-and-conditions"),
   },
 ];
 export const SOCIAL_MEDIA = [
