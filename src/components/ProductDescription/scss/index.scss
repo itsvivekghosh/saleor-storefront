@@ -105,6 +105,53 @@
     padding-top: 20px;
   }
 
+  &__add-to-cart-v2 {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  &__update-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1rem;
+
+      border: none;
+      background-color: #13bebb;
+      color: $white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #06a09e;
+    }
+
+    span.quantity {
+      font-size: 1rem;
+      min-width: 2rem;
+      text-align: center;
+      font-weight: $bold-font-weight;
+      display: inline-block;
+    }
+
+    &.large {
+      button {
+        width: 3rem;
+        height: 3rem;
+        font-size: 2rem;
+      }
+
+      span.quantity {
+        font-size: 2rem;
+        min-width: 4rem;
+      }
+    }
+  }
+
   &__add-to-wishlist {
     margin-top: 20px;
   }

@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import isEqual from "lodash/isEqual";
 import * as React from "react";
 
-import { TextField } from "@components/molecules";
+// import { TextField } from "@components/molecules";
 import { ProductVariantPicker } from "@components/organisms";
 import {
   ProductDetails_product_pricing,
@@ -14,7 +14,7 @@ import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
 
 import { TaxedMoney } from "../../@next/components/containers";
 import { CartContext, CartLine } from "../CartProvider/context";
-import AddToCart from "./AddToCart";
+import AddToCartV2 from "./AddToCartV2";
 // import AddToWishlist from "./AddToWishlist";
 
 interface ProductDescriptionProps {
@@ -118,7 +118,7 @@ class ProductDescription extends React.Component<
 
   render() {
     const { name } = this.props;
-    const { quantity } = this.state;
+    // const { quantity } = this.state;
 
     return (
       <div className="product-description">
@@ -131,7 +131,7 @@ class ProductDescription extends React.Component<
             selectSidebar={false}
           />
         </div>
-        <div className="product-description__quantity-input">
+        {/* <div className="product-description__quantity-input">
           <TextField
             type="number"
             label="Quantity"
@@ -141,14 +141,16 @@ class ProductDescription extends React.Component<
               this.setState({ quantity: Math.max(1, Number(e.target.value)) })
             }
           />
-        </div>
+        </div> */}
         <CartContext.Consumer>
           {({ lines }) => (
-            <AddToCart
-              onSubmit={this.handleSubmit}
-              lines={lines}
-              disabled={!this.canAddToCart(lines)}
-            />
+            <div className="product-description__add-to-cart-v2">
+              <AddToCartV2
+                variantId={this.state.variant}
+                disabled={!this.canAddToCart(lines)}
+                largeButtons={true}
+              />
+            </div>
           )}
         </CartContext.Consumer>
         {/* <div className="product-description__add-to-wishlist">
