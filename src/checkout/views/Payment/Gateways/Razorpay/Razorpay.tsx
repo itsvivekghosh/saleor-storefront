@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import { MutationFn } from "react-apollo";
 import styled from "styled-components";
 
@@ -58,7 +58,9 @@ const RazorpayForm = ({
   return (
     <TypedPaymentMethodCreateMutation>
       {createPaymentMethod => {
-        const handleSubmit = async () => {
+        const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+          event.preventDefault();
+
           setLoadingState(true);
           const paymentDetails: any = await createPaymentObject(
             createPaymentMethod,
