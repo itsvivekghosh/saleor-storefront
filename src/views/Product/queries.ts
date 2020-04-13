@@ -20,20 +20,6 @@ export const priceFragment = gql`
   }
 `;
 
-export const basicProductFragment = gql`
-  fragment BasicProductFields on Product {
-    id
-    name
-    thumbnail {
-      url
-      alt
-    }
-    thumbnail2x: thumbnail(size: 510) {
-      url
-    }
-  }
-`;
-
 export const productPricingFragment = gql`
   ${priceFragment}
   fragment ProductPricingField on Product {
@@ -108,12 +94,30 @@ export const productVariantFragment = gql`
   }
 `;
 
+export const basicProductFragment = gql`
+  ${productVariantFragment}
+  fragment BasicProductFields on Product {
+    id
+    name
+    thumbnail {
+      url
+      alt
+    }
+    thumbnail2x: thumbnail(size: 510) {
+      url
+    }
+    variants {
+      ...ProductVariantFields
+    }
+  }
+`;
+
 export const productDetailsQuery = gql`
   ${basicProductFragment}
   ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
-  query ProductDetails($id: ID!) {
+  query GetProductDetails($id: ID!) {
     product(id: $id) {
       ...BasicProductFields
       ...ProductPricingField

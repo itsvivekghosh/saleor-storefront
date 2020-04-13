@@ -6,6 +6,7 @@ export const productVariants: ProductDetails_product_variants[] = [
     id: "UHJvZHVjdFZhcmlhbnQ6MjAy",
     sku: "93855755",
     name: "1l / cotton / yellow",
+    images: [],
     stockQuantity: 50,
     isAvailable: true,
     pricing: {
@@ -94,6 +95,7 @@ export const productVariants: ProductDetails_product_variants[] = [
     id: "UHJvZHVjdFZhcmlhbnQ6MjA0",
     sku: "80884671",
     name: "2l / wool / red",
+    images: [],
     stockQuantity: 50,
     isAvailable: true,
     pricing: {
@@ -182,6 +184,7 @@ export const productVariants: ProductDetails_product_variants[] = [
     id: "UHJvZHVjdFZhcmlhbnQ6MzE2",
     sku: "100",
     name: "500ml / wool / turquoise",
+    images: [],
     stockQuantity: 50,
     isAvailable: true,
     pricing: {

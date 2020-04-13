@@ -3,10 +3,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: UserDetails
+// GraphQL mutation operation: VerifyTokenUserComponent
 // ====================================================
 
-export interface UserDetails_me_defaultShippingAddress_country {
+export interface VerifyTokenUserComponent_tokenVerify_user_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -18,7 +18,7 @@ export interface UserDetails_me_defaultShippingAddress_country {
   country: string;
 }
 
-export interface UserDetails_me_defaultShippingAddress {
+export interface VerifyTokenUserComponent_tokenVerify_user_defaultShippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -34,12 +34,12 @@ export interface UserDetails_me_defaultShippingAddress {
   /**
    * Shop's default country.
    */
-  country: UserDetails_me_defaultShippingAddress_country;
+  country: VerifyTokenUserComponent_tokenVerify_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
 }
 
-export interface UserDetails_me_defaultBillingAddress_country {
+export interface VerifyTokenUserComponent_tokenVerify_user_defaultBillingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -51,7 +51,7 @@ export interface UserDetails_me_defaultBillingAddress_country {
   country: string;
 }
 
-export interface UserDetails_me_defaultBillingAddress {
+export interface VerifyTokenUserComponent_tokenVerify_user_defaultBillingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -67,12 +67,12 @@ export interface UserDetails_me_defaultBillingAddress {
   /**
    * Shop's default country.
    */
-  country: UserDetails_me_defaultBillingAddress_country;
+  country: VerifyTokenUserComponent_tokenVerify_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
 }
 
-export interface UserDetails_me_addresses_country {
+export interface VerifyTokenUserComponent_tokenVerify_user_addresses_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -84,7 +84,7 @@ export interface UserDetails_me_addresses_country {
   country: string;
 }
 
-export interface UserDetails_me_addresses {
+export interface VerifyTokenUserComponent_tokenVerify_user_addresses {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -100,12 +100,12 @@ export interface UserDetails_me_addresses {
   /**
    * Shop's default country.
    */
-  country: UserDetails_me_addresses_country;
+  country: VerifyTokenUserComponent_tokenVerify_user_addresses_country;
   countryArea: string;
   phone: string | null;
 }
 
-export interface UserDetails_me {
+export interface VerifyTokenUserComponent_tokenVerify_user {
   __typename: "User";
   /**
    * The ID of the object.
@@ -115,17 +115,27 @@ export interface UserDetails_me {
   firstName: string;
   lastName: string;
   isStaff: boolean;
-  defaultShippingAddress: UserDetails_me_defaultShippingAddress | null;
-  defaultBillingAddress: UserDetails_me_defaultBillingAddress | null;
+  defaultShippingAddress: VerifyTokenUserComponent_tokenVerify_user_defaultShippingAddress | null;
+  defaultBillingAddress: VerifyTokenUserComponent_tokenVerify_user_defaultBillingAddress | null;
   /**
    * List of all user's addresses.
    */
-  addresses: (UserDetails_me_addresses | null)[] | null;
+  addresses: (VerifyTokenUserComponent_tokenVerify_user_addresses | null)[] | null;
 }
 
-export interface UserDetails {
+export interface VerifyTokenUserComponent_tokenVerify {
+  __typename: "VerifyToken";
+  payload: any | null;
+  user: VerifyTokenUserComponent_tokenVerify_user | null;
+}
+
+export interface VerifyTokenUserComponent {
   /**
-   * Return the currently authenticated user.
+   * Mutation that confirms if token is valid and also returns user data.
    */
-  me: UserDetails_me | null;
+  tokenVerify: VerifyTokenUserComponent_tokenVerify | null;
+}
+
+export interface VerifyTokenUserComponentVariables {
+  token: string;
 }

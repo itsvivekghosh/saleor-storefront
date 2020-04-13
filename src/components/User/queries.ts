@@ -26,7 +26,7 @@ export const userFragment = gql`
 
 export const tokenAuthMutation = gql`
   ${userFragment}
-  mutation TokenAuth($email: String!, $password: String!) {
+  mutation TokenAuthUserComponent($email: String!, $password: String!) {
     tokenCreate(email: $email, password: $password) {
       token
       errors {
@@ -42,7 +42,7 @@ export const tokenAuthMutation = gql`
 
 export const tokenVeryficationMutation = gql`
   ${userFragment}
-  mutation VerifyToken($token: String!) {
+  mutation VerifyTokenUserComponent($token: String!) {
     tokenVerify(token: $token) {
       payload
       user {

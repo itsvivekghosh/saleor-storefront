@@ -2,13 +2,11 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AddressInput } from "./../../../../types/globalTypes";
-
 // ====================================================
-// GraphQL mutation operation: CreateUserAddress
+// GraphQL mutation operation: TokenAuthUserComponent
 // ====================================================
 
-export interface CreateUserAddress_accountAddressCreate_errors {
+export interface TokenAuthUserComponent_tokenCreate_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
@@ -21,7 +19,7 @@ export interface CreateUserAddress_accountAddressCreate_errors {
   message: string | null;
 }
 
-export interface CreateUserAddress_accountAddressCreate_user_defaultShippingAddress_country {
+export interface TokenAuthUserComponent_tokenCreate_user_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -33,7 +31,7 @@ export interface CreateUserAddress_accountAddressCreate_user_defaultShippingAddr
   country: string;
 }
 
-export interface CreateUserAddress_accountAddressCreate_user_defaultShippingAddress {
+export interface TokenAuthUserComponent_tokenCreate_user_defaultShippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -49,12 +47,12 @@ export interface CreateUserAddress_accountAddressCreate_user_defaultShippingAddr
   /**
    * Shop's default country.
    */
-  country: CreateUserAddress_accountAddressCreate_user_defaultShippingAddress_country;
+  country: TokenAuthUserComponent_tokenCreate_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
 }
 
-export interface CreateUserAddress_accountAddressCreate_user_defaultBillingAddress_country {
+export interface TokenAuthUserComponent_tokenCreate_user_defaultBillingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -66,7 +64,7 @@ export interface CreateUserAddress_accountAddressCreate_user_defaultBillingAddre
   country: string;
 }
 
-export interface CreateUserAddress_accountAddressCreate_user_defaultBillingAddress {
+export interface TokenAuthUserComponent_tokenCreate_user_defaultBillingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -82,12 +80,12 @@ export interface CreateUserAddress_accountAddressCreate_user_defaultBillingAddre
   /**
    * Shop's default country.
    */
-  country: CreateUserAddress_accountAddressCreate_user_defaultBillingAddress_country;
+  country: TokenAuthUserComponent_tokenCreate_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
 }
 
-export interface CreateUserAddress_accountAddressCreate_user_addresses_country {
+export interface TokenAuthUserComponent_tokenCreate_user_addresses_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -99,7 +97,7 @@ export interface CreateUserAddress_accountAddressCreate_user_addresses_country {
   country: string;
 }
 
-export interface CreateUserAddress_accountAddressCreate_user_addresses {
+export interface TokenAuthUserComponent_tokenCreate_user_addresses {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -115,12 +113,12 @@ export interface CreateUserAddress_accountAddressCreate_user_addresses {
   /**
    * Shop's default country.
    */
-  country: CreateUserAddress_accountAddressCreate_user_addresses_country;
+  country: TokenAuthUserComponent_tokenCreate_user_addresses_country;
   countryArea: string;
   phone: string | null;
 }
 
-export interface CreateUserAddress_accountAddressCreate_user {
+export interface TokenAuthUserComponent_tokenCreate_user {
   __typename: "User";
   /**
    * The ID of the object.
@@ -130,33 +128,33 @@ export interface CreateUserAddress_accountAddressCreate_user {
   firstName: string;
   lastName: string;
   isStaff: boolean;
-  defaultShippingAddress: CreateUserAddress_accountAddressCreate_user_defaultShippingAddress | null;
-  defaultBillingAddress: CreateUserAddress_accountAddressCreate_user_defaultBillingAddress | null;
+  defaultShippingAddress: TokenAuthUserComponent_tokenCreate_user_defaultShippingAddress | null;
+  defaultBillingAddress: TokenAuthUserComponent_tokenCreate_user_defaultBillingAddress | null;
   /**
    * List of all user's addresses.
    */
-  addresses: (CreateUserAddress_accountAddressCreate_user_addresses | null)[] | null;
+  addresses: (TokenAuthUserComponent_tokenCreate_user_addresses | null)[] | null;
 }
 
-export interface CreateUserAddress_accountAddressCreate {
-  __typename: "AccountAddressCreate";
-  /**
-   * List of errors that occurred executing the mutation.
-   */
-  errors: CreateUserAddress_accountAddressCreate_errors[] | null;
-  /**
-   * A user instance for which the address was created.
-   */
-  user: CreateUserAddress_accountAddressCreate_user | null;
+export interface TokenAuthUserComponent_tokenCreate {
+  __typename: "CreateToken";
+  token: string | null;
+  errors: (TokenAuthUserComponent_tokenCreate_errors | null)[];
+  user: TokenAuthUserComponent_tokenCreate_user | null;
 }
 
-export interface CreateUserAddress {
+export interface TokenAuthUserComponent {
   /**
-   * Create a new address for the customer.
+   * Mutation that authenticates a user and returns token and user data.
+   * 
+   * It overrides the default graphql_jwt.ObtainJSONWebToken to wrap potential
+   * authentication errors in our Error type, which is consistent to how the rest of
+   * the mutation works.
    */
-  accountAddressCreate: CreateUserAddress_accountAddressCreate | null;
+  tokenCreate: TokenAuthUserComponent_tokenCreate | null;
 }
 
-export interface CreateUserAddressVariables {
-  input: AddressInput;
+export interface TokenAuthUserComponentVariables {
+  email: string;
+  password: string;
 }

@@ -2,13 +2,13 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { PaymentInput } from "./../../../../../types/globalTypes";
+import { PaymentInput } from "./../../../../../../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: createPayment
+// GraphQL mutation operation: createPaymentRazorpay
 // ====================================================
 
-export interface createPayment_checkoutPaymentCreate_errors {
+export interface createPaymentRazorpay_checkoutPaymentCreate_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
@@ -21,32 +21,31 @@ export interface createPayment_checkoutPaymentCreate_errors {
   message: string | null;
 }
 
-export interface createPayment_checkoutPaymentCreate_payment {
+export interface createPaymentRazorpay_checkoutPaymentCreate_payment {
   __typename: "Payment";
   token: string;
-  extraData: string;
 }
 
-export interface createPayment_checkoutPaymentCreate {
+export interface createPaymentRazorpay_checkoutPaymentCreate {
   __typename: "CheckoutPaymentCreate";
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: createPayment_checkoutPaymentCreate_errors[] | null;
+  errors: createPaymentRazorpay_checkoutPaymentCreate_errors[] | null;
   /**
    * A newly created payment.
    */
-  payment: createPayment_checkoutPaymentCreate_payment | null;
+  payment: createPaymentRazorpay_checkoutPaymentCreate_payment | null;
 }
 
-export interface createPayment {
+export interface createPaymentRazorpay {
   /**
    * Create a new payment for given checkout.
    */
-  checkoutPaymentCreate: createPayment_checkoutPaymentCreate | null;
+  checkoutPaymentCreate: createPaymentRazorpay_checkoutPaymentCreate | null;
 }
 
-export interface createPaymentVariables {
+export interface createPaymentRazorpayVariables {
   input: PaymentInput;
   checkoutId: string;
 }

@@ -1,20 +1,6 @@
 import gql from "graphql-tag";
 import { checkoutPriceFragment } from "./checkout";
 
-export const basicProductFragment = gql`
-  fragment BasicProductFields on Product {
-    id
-    name
-    thumbnail {
-      url
-      alt
-    }
-    thumbnail2x: thumbnail(size: 510) {
-      url
-    }
-  }
-`;
-
 export const selectedAttributeFragment = gql`
   fragment SelectedAttributeFields on SelectedAttribute {
     attribute {
@@ -36,6 +22,11 @@ export const productVariantFragment = gql`
     name
     stockQuantity
     isAvailable
+    images {
+      id
+      url
+      alt
+    }
     pricing {
       onSale
       priceUndiscounted {
@@ -55,6 +46,24 @@ export const productVariantFragment = gql`
         name
         value: name
       }
+    }
+  }
+`;
+
+export const basicProductFragment = gql`
+  ${productVariantFragment}
+  fragment BasicProductFields on Product {
+    id
+    name
+    thumbnail {
+      url
+      alt
+    }
+    thumbnail2x: thumbnail(size: 510) {
+      url
+    }
+    variants {
+      ...ProductVariantFields
     }
   }
 `;

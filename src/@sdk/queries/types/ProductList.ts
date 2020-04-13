@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AttributeInput, ProductOrder } from "./../../types/globalTypes";
+import { AttributeInput, ProductOrder } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ProductList
@@ -26,6 +26,177 @@ export interface ProductList_products_edges_node_thumbnail2x {
    * The URL of the image.
    */
   url: string;
+}
+
+export interface ProductList_products_edges_node_variants_images {
+  __typename: "ProductImage";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  alt: string;
+}
+
+export interface ProductList_products_edges_node_variants_pricing_priceUndiscounted_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface ProductList_products_edges_node_variants_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface ProductList_products_edges_node_variants_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: ProductList_products_edges_node_variants_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: ProductList_products_edges_node_variants_pricing_priceUndiscounted_net;
+}
+
+export interface ProductList_products_edges_node_variants_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface ProductList_products_edges_node_variants_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface ProductList_products_edges_node_variants_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: ProductList_products_edges_node_variants_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: ProductList_products_edges_node_variants_pricing_price_net;
+}
+
+export interface ProductList_products_edges_node_variants_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: ProductList_products_edges_node_variants_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: ProductList_products_edges_node_variants_pricing_price | null;
+}
+
+export interface ProductList_products_edges_node_variants_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface ProductList_products_edges_node_variants_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface ProductList_products_edges_node_variants_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: ProductList_products_edges_node_variants_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (ProductList_products_edges_node_variants_attributes_values | null)[];
+}
+
+export interface ProductList_products_edges_node_variants {
+  __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  sku: string;
+  name: string;
+  /**
+   * Quantity of a product available for sale.
+   */
+  stockQuantity: number;
+  /**
+   * Whether the variant is in stock and visible or not.
+   */
+  isAvailable: boolean | null;
+  /**
+   * List of images for the product variant.
+   */
+  images: (ProductList_products_edges_node_variants_images | null)[] | null;
+  /**
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
+   */
+  pricing: ProductList_products_edges_node_variants_pricing | null;
+  /**
+   * List of attributes assigned to this variant.
+   */
+  attributes: ProductList_products_edges_node_variants_attributes[];
 }
 
 export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_start_gross {
@@ -236,6 +407,10 @@ export interface ProductList_products_edges_node {
    * The main thumbnail for a product.
    */
   thumbnail2x: ProductList_products_edges_node_thumbnail2x | null;
+  /**
+   * List of variants for the product.
+   */
+  variants: (ProductList_products_edges_node_variants | null)[] | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */

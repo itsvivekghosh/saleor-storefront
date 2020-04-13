@@ -37,14 +37,6 @@ export interface VerifyToken_tokenVerify_user_defaultShippingAddress {
   country: VerifyToken_tokenVerify_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface VerifyToken_tokenVerify_user_defaultBillingAddress_country {
@@ -78,14 +70,6 @@ export interface VerifyToken_tokenVerify_user_defaultBillingAddress {
   country: VerifyToken_tokenVerify_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface VerifyToken_tokenVerify_user_addresses_country {
@@ -119,14 +103,6 @@ export interface VerifyToken_tokenVerify_user_addresses {
   country: VerifyToken_tokenVerify_user_addresses_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface VerifyToken_tokenVerify_user {
