@@ -134,7 +134,6 @@
       font-size: 1rem;
       min-width: 2rem;
       text-align: center;
-      font-weight: $bold-font-weight;
       display: inline-block;
     }
 
@@ -146,8 +145,8 @@
       }
 
       span.quantity {
-        font-size: 2rem;
-        min-width: 4rem;
+        font-size: 1.25rem;
+        padding: 0 1rem;
       }
     }
   }

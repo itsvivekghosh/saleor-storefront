@@ -73,7 +73,7 @@ const AddToCartV2: React.FC<{
           return (
             <div className={updateQuantityClassNames.join(" ")}>
               <button onClick={() => subtract(variantId)}>-</button>
-              <span className="quantity">{currentQuantitty}</span>
+              <span className="quantity">{currentQuantitty} in basket</span>
               <button onClick={() => add(variantId)}>+</button>
             </div>
           );
