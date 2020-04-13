@@ -48,7 +48,7 @@
         display: inline-block;
         transform: skew(-45deg);
         font-weight: $bold-font-weight;
-        text-transform: uppercase;
+        // text-transform: uppercase;
         color: $blue;
         font-size: $h1-font-size;
         font-weight: 900;
@@ -68,57 +68,54 @@
     margin-bottom: 2rem;
 
     h3 {
-      text-transform: uppercase;
+      // text-transform: uppercase;
       font-weight: $bold-font-weight;
       margin-bottom: 1rem;
+      margin-top: 1rem;
     }
 
     &__list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1rem;
 
       @media (min-width: $small-screen) {
-        grid-template-columns: 1fr 1fr;
-
-        // > div {
-        //   &:nth-child(3) {
-        //     grid-column: 3 / 1;
-        //   }
-
-        //   &:nth-child(n + 4) {
-        //     display: none;
-        //   }
-        // }
+        grid-gap: 2rem;
       }
 
       a {
         text-decoration: none;
         color: $base-font-color;
 
-        h3 {
-          text-transform: uppercase;
+        h4 {
+          // text-transform: uppercase;
           font-weight: $bold-font-weight;
 
-          &:after {
-            content: url("../../../images/carousel-arrow.svg");
-            display: inline-block;
-            transform: rotate(180deg);
-            margin-left: 1rem;
-          }
+          // &:after {
+          //   content: url("../../../images/carousel-arrow.svg");
+          //   display: inline-block;
+          //   transform: rotate(180deg);
+          //   margin-left: 1rem;
+          // }
         }
       }
 
+      &__item {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
       &__image {
-        width: 100%;
-        height: 15rem;
+        justify-content: left;
+        align-items: baseline;
+        display: flex;
+
         background-size: cover;
         background-position: center;
         margin-bottom: 1rem;
 
-        @media (min-width: $small-screen) {
-          height: 30rem;
-        }
+        width: 100%;
+        padding-bottom: 100%;
 
         &--no-photo {
           background-color: $turquoise-light;

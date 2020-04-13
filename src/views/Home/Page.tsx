@@ -77,7 +77,7 @@ const Page: React.FC<{
             <h3>Shop by category</h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
-                <div key={category.id}>
+                <div key={category.id} className="home-page__categories__list__item">
                   <Link
                     to={generateCategoryUrl(category.id, category.name)}
                     key={category.id}
@@ -97,7 +97,7 @@ const Page: React.FC<{
                         })`,
                       }}
                     />
-                    <h3>{category.name}</h3>
+                    <h4>{category.name}</h4>
                   </Link>
                 </div>
               ))}
