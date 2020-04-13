@@ -8,15 +8,15 @@ const textProps = css`
 `;
 
 export const Wrapper = styled.div`
-  background: ${props => props.theme.colors.light};
+  // background: ${props => props.theme.colors.light};
   padding: 2.5rem;
   text-align: center;
   max-height: 30rem;
   transition: 0.3s;
 
-  :hover {
-    background-color: ${props => props.theme.colors.hoverLightBackground};
-  }
+  // :hover {
+  //   background-color: ${props => props.theme.colors.hoverLightBackground};
+  // }
 
   ${media.mediumScreen`
     padding: 1.8rem;

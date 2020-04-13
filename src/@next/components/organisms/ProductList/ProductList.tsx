@@ -1,13 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
 
-import { Button, Loader } from "@components/atoms";
-import { ProductTile } from "@components/molecules";
+import { Button, Loader } from '@components/atoms';
+import { ProductTile } from '@components/molecules';
 
-import { generateProductUrl } from "../../../../core/utils";
-
-import * as S from "./styles";
-import { IProps } from "./types";
+import * as S from './styles';
+import { IProps } from './types';
 
 export const ProductList: React.FC<IProps> = ({
   products,
@@ -19,12 +16,7 @@ export const ProductList: React.FC<IProps> = ({
     <>
       <S.List>
         {products.map(product => (
-          <Link
-            to={generateProductUrl(product.id, product.name)}
-            key={product.id}
-          >
-            <ProductTile product={product} />
-          </Link>
+          <ProductTile product={product} />
         ))}
       </S.List>
       <S.Loader>
