@@ -76,10 +76,13 @@ export const useProductVariantsAttributesValuesSelection = (
     const productVariantsAttributeId = Object.keys(
       productVariantsAttributes
     )[0];
-    selectProductVariantsAttributesValue(
-      productVariantsAttributeId,
-      productVariantsAttributes[productVariantsAttributeId].values[0].value
-    );
+    const firstAttributeValue = productVariantsAttributes[productVariantsAttributeId].values[0];
+    if (firstAttributeValue && firstAttributeValue.value !== undefined) {
+      selectProductVariantsAttributesValue(
+        productVariantsAttributeId,
+        productVariantsAttributes[productVariantsAttributeId].values[0].value
+      );
+    }
   }
 
   return [
