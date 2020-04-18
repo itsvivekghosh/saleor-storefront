@@ -1,17 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { useUserDetails } from '@sdk/react';
+import { useUserDetails } from "@sdk/react";
 
-import { CheckoutContext } from '../../checkout/context';
-import { TypedCreateCheckoutMutation } from '../../checkout/queries';
-import { CartContext } from '../CartProvider/context';
-import AddToCartButton from './AddToCartButton';
+import { CheckoutContext } from "../../checkout/context";
+import { TypedCreateCheckoutMutation } from "../../checkout/queries";
+import { CartContext } from "../CartProvider/context";
 
 const AddToCartV2: React.FC<{
   disabled: boolean;
   variantId: string;
   largeButtons?: boolean;
-}> = ({ disabled, variantId, largeButtons = false }) => {
+}> = ({ disabled, variantId }) => {
   const { data: user } = useUserDetails();
   return (
     <CartContext.Consumer>
@@ -40,41 +39,59 @@ const AddToCartV2: React.FC<{
                   }}
                 >
                   {(createCheckout, { loading: mutationLoading }) => (
-                    <AddToCartButton
-                      className="product-description__action"
-                      onClick={() => {
-                        if (user && !checkout) {
-                          createCheckout({
-                            variables: {
-                              checkoutInput: { email: user.email, lines },
-                            },
-                          });
-                        } else {
-                          onSubmit();
+                    <div className="product-description__add-to-cart-v2">
+                      <button
+                        className="product-description__add-to-cart-v2__button"
+                        onClick={e => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          if (user && !checkout) {
+                            createCheckout({
+                              variables: {
+                                checkoutInput: { email: user.email, lines },
+                              },
+                            });
+                          } else {
+                            onSubmit();
+                          }
+                        }}
+                        disabled={
+                          disabled || mutationLoading || checkoutLoading
                         }
-                      }}
-                      disabled={disabled || mutationLoading || checkoutLoading}
-                    >
-                      Add to basket
-                    </AddToCartButton>
+                      >
+                        Add<span> to basket</span>
+                      </button>
+                    </div>
                   )}
                 </TypedCreateCheckoutMutation>
               )}
             </CheckoutContext.Consumer>
           );
         } else {
-          const updateQuantityClassNames = [
-            `product-description__update-quantity`,
-          ];
-          if (largeButtons) {
-            updateQuantityClassNames.push("large");
-          }
-
           return (
-            <div className={updateQuantityClassNames.join(" ")}>
-              <button onClick={() => subtract(variantId)}>-</button>
-              <span className="quantity">{currentQuantitty} in basket</span>
-              <button onClick={() => add(variantId)}>+</button>
+            <div className="product-description__add-to-cart-v2 product-description__add-to-cart-v2__update-quantity">
+              <button
+                onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  subtract(variantId);
+                }}
+              >
+                -
+              </button>
+              <span className="quantity">
+                {currentQuantitty}
+                <span className="quantity-description"> in basket</span>
+              </span>
+              <button
+                onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  add(variantId);
+                }}
+              >
+                +
+              </button>
             </div>
           );
         }

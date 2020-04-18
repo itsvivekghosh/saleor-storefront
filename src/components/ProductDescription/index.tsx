@@ -144,13 +144,11 @@ class ProductDescription extends React.Component<
         </div> */}
         <CartContext.Consumer>
           {({ lines }) => (
-            <div className="product-description__add-to-cart-v2">
-              <AddToCartV2
-                variantId={this.state.variant}
-                disabled={!this.canAddToCart(lines)}
-                largeButtons={true}
-              />
-            </div>
+            <AddToCartV2
+              variantId={this.state.variant}
+              disabled={!this.canAddToCart(lines)}
+              largeButtons={true}
+            />
           )}
         </CartContext.Consumer>
         {/* <div className="product-description__add-to-wishlist">

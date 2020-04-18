@@ -8,9 +8,9 @@ import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
-import { ProductDetails_product } from "./types/ProductDetails";
+import { GetProductDetails_product } from "./types/GetProductDetails";
 
-const canDisplay = (product: ProductDetails_product) =>
+const canDisplay = (product: GetProductDetails_product) =>
   maybe(
     () =>
       !!product.descriptionJson &&
@@ -18,7 +18,7 @@ const canDisplay = (product: ProductDetails_product) =>
       !!product.pricing &&
       !!product.variants
   );
-const extractMeta = (product: ProductDetails_product) => ({
+const extractMeta = (product: GetProductDetails_product) => ({
   custom: [
     {
       content: product.pricing.priceRange.start.gross.amount.toString(),

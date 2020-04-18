@@ -2,10 +2,10 @@ import * as React from "react";
 
 import { ProductList } from "@components/organisms";
 
-import { ProductDetails_product_category_products_edges } from "./types/ProductDetails";
+import { GetProductDetails_product_category_products_edges } from "./types/GetProductDetails";
 
 const OtherProducts: React.FC<{
-  products: ProductDetails_product_category_products_edges[];
+  products: GetProductDetails_product_category_products_edges[];
 }> = ({ products }) => (
   <div className="product-page__other-products">
     <div className="container">

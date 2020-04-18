@@ -11,7 +11,7 @@ import { CartContext } from "../../components/CartProvider/context";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
-import { ProductDetails_product } from "./types/ProductDetails";
+import { GetProductDetails_product } from "./types/GetProductDetails";
 
 import { ProductDescription as NewProductDescription } from "../../@next/components/molecules";
 
@@ -20,7 +20,7 @@ import { ProductGallery } from "../../@next/components/organisms/";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
 class Page extends React.PureComponent<
-  { product: ProductDetails_product },
+  { product: GetProductDetails_product },
   { variantId: string }
 > {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();

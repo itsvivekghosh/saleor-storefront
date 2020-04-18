@@ -106,47 +106,76 @@
   }
 
   &__add-to-cart-v2 {
-    margin-top: 10px;
-    padding-top: 10px;
-  }
-
-  &__update-quantity {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: baseline;
 
     button {
-      width: 1.5rem;
-      height: 1.5rem;
-      font-size: 1rem;
-
       border: none;
-      background-color: #13bebb;
+      background-color: $go4life-green;
       color: $white;
+      font-size: 1rem;
       cursor: pointer;
     }
 
-    button:hover {
-      background-color: #06a09e;
+    // button:hover {
+    //   background-color: #06a09e;
+    // }
+
+    &__button {
+      padding: 0.4rem;
+
+      @media (max-width: $small-screen) {
+        span {
+          display: none;
+        }
+      }
     }
 
-    span.quantity {
-      font-size: 0.9rem;
-      padding: 0 1rem;
-      text-align: center;
-      display: inline-block;
-    }
+    &__update-quantity {
+      display: flex;
+      align-items: center;
+      justify-content: baseline;
 
-    &.large {
       button {
-        width: 3rem;
-        height: 3rem;
-        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        padding: 0;
       }
 
       span.quantity {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
         padding: 0 1rem;
+        text-align: center;
+        display: inline-block;
+
+        @media (max-width: $small-screen) {
+          padding: 0 0.5rem;
+
+          span.quantity-description {
+            display: none;
+          }
+        }
+      }
+    }
+
+    @media (min-width: $medium-screen) {
+      button {
+        font-size: 1.2rem;
+        padding: 0.4rem;
+      }
+
+      &__update-quantity {
+        button {
+          width: 2.3rem;
+          height: 2.3rem;
+          padding: 0;
+        }
+
+        span.quantity {
+          font-size: 1.25rem;
+          padding: 0 1rem;
+        }
       }
     }
   }

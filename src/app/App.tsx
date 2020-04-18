@@ -1,6 +1,6 @@
 import "../globalStyles/scss/index.scss";
 
-import React from "react";
+import React, { useRef } from "react";
 import { RouteComponentProps } from "react-router";
 
 import { Footer, MainMenu, MetaConsumer, OverlayManager } from "../components";
@@ -12,17 +12,39 @@ const App: React.FC<RouteComponentProps> = ({
     location: { pathname },
   },
 }) => {
+  // useEffect(() => {
+  //   return () => {
+  //     window.addEventListener("scroll", () => handleScroll);
+  //   };
+  // }, []);
+
+  // const [isSticky, setSticky] = useState(false);
+
+  const stickyRef = useRef(null);
+  // const handleScroll = () => {
+  //   // tslint:disable-next-line:no-console
+  //   console.log(stickyRef && stickyRef.current && stickyRef.current.getBoundingClientRect())
+  //   window.pageYOffset > stickyRef.current.getBoundingClientRect().bottom
+  //     ? setSticky(true)
+  //     : setSticky(false);
+  // };
+  // // handleScroll();
+
+  // // setSticky(true);
+
   const orderConfirmationPage = isPath(pathname, orderConfirmationUrl);
 
   return (
     <>
       <MetaConsumer />
       <header>
-        <MainMenu />
+        <MainMenu isSticky={true} />
       </header>
-      <Routes />
-      {!orderConfirmationPage && <Footer />}
-      <OverlayManager />
+      <div ref={stickyRef} style={{ marginTop: "3.55rem" }}>
+        <Routes />
+        {!orderConfirmationPage && <Footer />}
+        <OverlayManager />
+      </div>
     </>
   );
 };

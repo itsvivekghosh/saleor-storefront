@@ -51,23 +51,18 @@ export class ProductTile extends React.Component<IProps, IState> {
 
     const { min, max }: { min?: any; max?: any } = variantPricingRange;
     if (variantPricing) {
-      if (
-        isEqual(
-          variantPricing.priceRangeUndiscounted,
-          variantPricing.priceRange
-        )
-      ) {
-        return <TaxedMoney taxedMoney={variantPricing.priceRange as any} />;
+      if (isEqual(variantPricing.priceUndiscounted, variantPricing.price)) {
+        return <TaxedMoney taxedMoney={variantPricing.price as any} />;
       } else {
         return (
           <>
             <span className="product-description__undiscounted_price">
               <TaxedMoney
-                taxedMoney={variantPricing.priceRangeUndiscounted as any}
+                taxedMoney={variantPricing.priceUndiscounted as any}
               />
             </span>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <TaxedMoney taxedMoney={variantPricing.priceRange as any} />
+            <TaxedMoney taxedMoney={variantPricing.price as any} />
           </>
         );
       }
@@ -120,31 +115,47 @@ export class ProductTile extends React.Component<IProps, IState> {
           )}
           key={this.props.product.id}
         >
-          <S.Title>{this.props.product.name}</S.Title>
-          <S.Price>
-            {/* <TaxedMoney taxedMoney={price} /> */}
-            {this.getProductPrice()}
-          </S.Price>
-          <S.Image>
-            <Thumbnail source={this.props.product} />
-          </S.Image>
+          <S.Grid>
+            <S.Image>
+              <Thumbnail source={this.props.product} />
+            </S.Image>
+            <S.DetailsColumn>
+              <S.Details>
+                <S.Title>{this.props.product.name}</S.Title>
+                <S.AttributeList>
+                  {this.props.product.attributes &&
+                    this.props.product.attributes.map(attribute => (
+                      <p>
+                        <S.AttributeName>
+                          {attribute.attribute.name}:{" "}
+                        </S.AttributeName>{" "}
+                        {attribute.values
+                          .map(value => value && value.name)
+                          .join(", ")}
+                      </p>
+                    ))}
+                </S.AttributeList>
+                <ProductVariantPicker
+                  productVariants={this.props.product.variants as any}
+                  onChange={this.onVariantPickerChange}
+                  selectSidebar={false}
+                />
+              </S.Details>
+              <S.AddToCartRow>
+                <S.Price>{this.getProductPrice()}</S.Price>
+                <CartContext.Consumer>
+                  {({ lines }) => (
+                    <AddToCartV2
+                      variantId={this.state.variant}
+                      disabled={!this.canAddToCart(lines)}
+                      largeButtons={true}
+                    />
+                  )}
+                </CartContext.Consumer>
+              </S.AddToCartRow>
+            </S.DetailsColumn>
+          </S.Grid>
         </Link>
-        <ProductVariantPicker
-          productVariants={this.props.product.variants as any}
-          onChange={this.onVariantPickerChange}
-          selectSidebar={false}
-        />
-        <CartContext.Consumer>
-          {({ lines }) => (
-            <div className="product-description__add-to-cart-v2">
-              <AddToCartV2
-                variantId={this.state.variant}
-                disabled={!this.canAddToCart(lines)}
-                largeButtons={true}
-              />
-            </div>
-          )}
-        </CartContext.Consumer>
       </S.Wrapper>
     );
   }

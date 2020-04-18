@@ -4,12 +4,14 @@ import { TypedQuery } from "../../core/queries";
 import {
   basicProductFragment,
   productPricingFragment,
+  selectedAttributeFragment,
 } from "../Product/queries";
 import { Collection, CollectionVariables } from "./types/Collection";
 
 export const collectionProductsQuery = gql`
   ${basicProductFragment}
   ${productPricingFragment}
+  ${selectedAttributeFragment}
   query Collection(
     $id: ID!
     $attributes: [AttributeInput]
@@ -47,6 +49,9 @@ export const collectionProductsQuery = gql`
           category {
             id
             name
+          }
+          attributes {
+            ...SelectedAttributeFields
           }
         }
       }

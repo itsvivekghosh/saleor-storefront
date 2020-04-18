@@ -3,6 +3,7 @@ import { ProductList_products_edges_node } from "@sdk/queries/types/ProductList"
 // tslint:disable:object-literal-sort-keys
 export const PRODUCT: ProductList_products_edges_node = {
   __typename: "Product",
+  attributes: [],
   category: {
     __typename: "Category",
     id: "Q2F0ZWdvcnk6MTQ=",

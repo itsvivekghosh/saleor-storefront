@@ -1,7 +1,11 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { productPricingFragment, productVariantFragment } from "../Product/queries";
+import {
+  productPricingFragment,
+  productVariantFragment,
+  selectedAttributeFragment,
+} from "../Product/queries";
 import {
   SearchProducts,
   SearchProductsVariables,
@@ -10,6 +14,7 @@ import {
 export const searchProductsQuery = gql`
   ${productVariantFragment}
   ${productPricingFragment}
+  ${selectedAttributeFragment}
   query SearchProducts(
     $query: String!
     $attributes: [AttributeInput]
@@ -39,6 +44,9 @@ export const searchProductsQuery = gql`
           category {
             id
             name
+          }
+          attributes {
+            ...SelectedAttributeFields
           }
           variants {
             ...ProductVariantFields

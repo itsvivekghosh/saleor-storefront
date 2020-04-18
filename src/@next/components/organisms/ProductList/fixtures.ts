@@ -1,5 +1,6 @@
 import { ProductList_products_edges_node } from "@sdk/queries/types/ProductList";
 
+// tslint:disable:object-literal-sort-keys
 export const PRODUCTS: ProductList_products_edges_node[] = [
   {
     __typename: "Product",
@@ -72,6 +73,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
         },
       },
     },
+    attributes: [],
     thumbnail: {
       __typename: "Image",
       alt: "",
@@ -156,6 +158,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
         },
       },
     },
+    attributes: [],
     thumbnail: {
       __typename: "Image",
       alt: "",
@@ -240,6 +243,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
         },
       },
     },
+    attributes: [],
     thumbnail: {
       __typename: "Image",
       alt: "",
@@ -324,6 +328,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
         },
       },
     },
+    attributes: [],
     thumbnail: {
       __typename: "Image",
       alt: "",
@@ -408,6 +413,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
         },
       },
     },
+    attributes: [],
     thumbnail: {
       __typename: "Image",
       alt: "",
@@ -492,6 +498,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
         },
       },
     },
+    attributes: [],
     thumbnail: {
       __typename: "Image",
       alt: "",

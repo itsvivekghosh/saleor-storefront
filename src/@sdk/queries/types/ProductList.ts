@@ -392,6 +392,42 @@ export interface ProductList_products_edges_node_category {
   name: string;
 }
 
+export interface ProductList_products_edges_node_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface ProductList_products_edges_node_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface ProductList_products_edges_node_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: ProductList_products_edges_node_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (ProductList_products_edges_node_attributes_values | null)[];
+}
+
 export interface ProductList_products_edges_node {
   __typename: "Product";
   /**
@@ -416,6 +452,10 @@ export interface ProductList_products_edges_node {
    */
   pricing: ProductList_products_edges_node_pricing | null;
   category: ProductList_products_edges_node_category | null;
+  /**
+   * List of attributes assigned to this product.
+   */
+  attributes: ProductList_products_edges_node_attributes[];
 }
 
 export interface ProductList_products_edges {

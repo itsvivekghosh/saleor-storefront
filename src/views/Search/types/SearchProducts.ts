@@ -221,6 +221,42 @@ export interface SearchProducts_products_edges_node_category {
   name: string;
 }
 
+export interface SearchProducts_products_edges_node_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface SearchProducts_products_edges_node_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface SearchProducts_products_edges_node_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: SearchProducts_products_edges_node_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (SearchProducts_products_edges_node_attributes_values | null)[];
+}
+
 export interface SearchProducts_products_edges_node_variants_images {
   __typename: "ProductImage";
   /**
@@ -412,6 +448,10 @@ export interface SearchProducts_products_edges_node {
    */
   thumbnail2x: SearchProducts_products_edges_node_thumbnail2x | null;
   category: SearchProducts_products_edges_node_category | null;
+  /**
+   * List of attributes assigned to this product.
+   */
+  attributes: SearchProducts_products_edges_node_attributes[];
   /**
    * List of variants for the product.
    */

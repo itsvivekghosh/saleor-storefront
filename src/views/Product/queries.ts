@@ -2,9 +2,9 @@ import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
 import {
-  ProductDetails,
-  ProductDetailsVariables,
-} from "./types/ProductDetails";
+  GetProductDetails,
+  GetProductDetailsVariables,
+} from "./types/GetProductDetails";
 import { VariantList, VariantListVariables } from "./types/VariantList";
 
 export const priceFragment = gql`
@@ -134,6 +134,9 @@ export const productDetailsQuery = gql`
                 id
                 name
               }
+              attributes {
+                ...SelectedAttributeFields
+              }
             }
           }
         }
@@ -176,8 +179,8 @@ export const productVariantsQuery = gql`
 `;
 
 export const TypedProductDetailsQuery = TypedQuery<
-  ProductDetails,
-  ProductDetailsVariables
+  GetProductDetails,
+  GetProductDetailsVariables
 >(productDetailsQuery);
 
 export const TypedProductVariantsQuery = TypedQuery<

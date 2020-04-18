@@ -1,13 +1,16 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+$main-menu-height: 3.55rem;
+
 .main-menu {
+  z-index: 1;
   align-items: center;
   align-items: stretch;
   background-color: $white;
   border-bottom: 1px solid $gray-light;
   display: flex;
   flex-direction: row;
-  height: 3.55rem;
+  height: $main-menu-height;
   position: relative;
 
   &__left {
@@ -286,5 +289,23 @@
         }
       }
     }
+  }
+}
+
+.main-menu-sticky {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  // margin-bottom: $main-menu-height;
+  animation: moveDown 0.5s;
+}
+
+@keyframes moveDown {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0rem);
   }
 }

@@ -33,6 +33,8 @@ export const productPricingFragment = gql`
 export const productListDetails = gql`
   ${basicProductFragment}
   ${productPricingFragment}
+  ${selectedAttributeFragment}
+  ${productVariantFragment}
   query ProductList(
     $id: ID!
     $attributes: [AttributeInput]
@@ -60,6 +62,12 @@ export const productListDetails = gql`
           category {
             id
             name
+          }
+          attributes {
+            ...SelectedAttributeFields
+          }
+          variants {
+            ...ProductVariantFields
           }
         }
       }
@@ -94,6 +102,9 @@ export const productDetails = gql`
               category {
                 id
                 name
+              }
+              attributes {
+                ...SelectedAttributeFields
               }
             }
           }
