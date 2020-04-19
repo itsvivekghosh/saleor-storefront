@@ -5,7 +5,6 @@ import {
 import "./scss/index.scss";
 
 import { useSignOut, useUserDetails } from "@sdk/react";
-import classNames from "classnames";
 
 import { Trans } from "@lingui/react";
 import * as React from "react";
@@ -40,16 +39,14 @@ import logoImg from "../../images/logo.png";
 import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
 
-const MainMenu: React.FC<{isSticky: boolean}> = ({isSticky}) => {
+const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
 
   return (
     <OverlayContext.Consumer>
       {overlayContext => (
-        <nav className={classNames("main-menu", {
-          "main-menu-sticky": isSticky,
-        })} id="header">
+        <nav className="main-menu main-menu-sticky" id="header">
           <div className="main-menu__left">
             <TypedMainMenuQuery renderOnError displayLoader={false}>
               {({ data }) => {

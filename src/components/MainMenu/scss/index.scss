@@ -1,9 +1,10 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 $main-menu-height: 3.55rem;
+$main-menu-z-index: 10;
 
 .main-menu {
-  z-index: 1;
+  z-index: $main-menu-z-index;
   align-items: center;
   align-items: stretch;
   background-color: $white;
@@ -149,6 +150,8 @@ $main-menu-height: 3.55rem;
   }
 
   &__dropdown {
+    z-index: $main-menu-z-index + 1;
+
     text-transform: uppercase;
     font-weight: $bold-font-weight;
 
@@ -214,6 +217,7 @@ $main-menu-height: 3.55rem;
   }
 
   &__nav-dropdown {
+    z-index: $main-menu-z-index + 1;
     padding: 0 1.5rem;
 
     &--active {
@@ -297,7 +301,6 @@ $main-menu-height: 3.55rem;
   width: 100%;
   top: 0;
   left: 0;
-  // margin-bottom: $main-menu-height;
   animation: moveDown 0.5s;
 }
 
