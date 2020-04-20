@@ -45,6 +45,12 @@ const AddToCartV2: React.FC<{
                         onClick={e => {
                           e.preventDefault();
                           e.stopPropagation();
+
+                          if (process.env.REDIRECT_TO_APP_STORE) {
+                            window.location.href = `https://onelink.to/yub375`;
+                            return;
+                          }
+
                           if (user && !checkout) {
                             createCheckout({
                               variables: {
