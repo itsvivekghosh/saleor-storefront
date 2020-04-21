@@ -26,6 +26,7 @@ import CreditCard from "./Gateways/Braintree/CreditCard";
 import Dummy from "./Gateways/Dummy";
 import RazorpayForm from "./Gateways/Razorpay/Razorpay";
 import { Stripe } from "./Gateways/Stripe";
+import Wallet from "./Gateways/Wallet";
 import { TypedPaymentMethodCreateMutation } from "./queries";
 import { createPayment, createPaymentVariables } from "./types/createPayment";
 
@@ -266,6 +267,12 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                             {...optionProps(providerName)}
                           >
                             <RazorpayForm {...paymentGatewayProps} />
+                          </Option>
+                        );
+                      case PROVIDERS.WALLET:
+                        return (
+                          <Option label="Wallet" {...optionProps(providerName)}>
+                            <Wallet {...paymentGatewayProps} />
                           </Option>
                         );
                     }

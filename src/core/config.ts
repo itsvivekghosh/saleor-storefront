@@ -8,6 +8,7 @@ export const PROVIDERS = {
   DUMMY: "Dummy",
   RAZORPAY: "Razorpay",
   STRIPE: "Stripe",
+  WALLET: "Wallet",
 };
 export const STATIC_PAGES = [
   {
