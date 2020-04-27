@@ -1,43 +1,28 @@
+import './scss/index.scss';
+
+import * as React from 'react';
+import Media from 'react-media';
+import { Link } from 'react-router-dom';
+import ReactSVG from 'react-svg';
+
+import { Trans } from '@lingui/react';
+import { useSignOut, useUserDetails } from '@sdk/react';
+
+import { MenuDropdown, Offline, Online, OverlayContext, OverlayTheme, OverlayType } from '../';
+import { maybe } from '../../core/utils';
+import { mediumScreen, smallScreen } from '../../globalStyles/scss/variables.scss';
+import cartImg from '../../images/cart.svg';
+import hamburgerHoverImg from '../../images/hamburger-hover.svg';
+import hamburgerImg from '../../images/hamburger.svg';
+import logoImg from '../../images/logo.png';
+import searchImg from '../../images/search.svg';
+import userImg from '../../images/user.svg';
 import {
-  mediumScreen,
-  smallScreen
-} from "../../globalStyles/scss/variables.scss";
-import "./scss/index.scss";
-
-import { useSignOut, useUserDetails } from "@sdk/react";
-
-import { Trans } from "@lingui/react";
-import * as React from "react";
-import Media from "react-media";
-import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
-
-import {
-  MenuDropdown,
-  Offline,
-  Online,
-  OverlayContext,
-  OverlayTheme,
-  OverlayType
-} from "..";
-import { maybe } from "../../core/utils";
-import {
-  accountUrl,
-  addressBookUrl,
-  baseUrl,
-  orderHistoryUrl,
-  paymentOptionsUrl
-} from "../../routes";
-import { CartContext } from "../CartProvider/context";
-import NavDropdown from "./NavDropdown";
-import { TypedMainMenuQuery } from "./queries";
-
-import cartImg from "../../images/cart.svg";
-import hamburgerHoverImg from "../../images/hamburger-hover.svg";
-import hamburgerImg from "../../images/hamburger.svg";
-import logoImg from "../../images/logo.png";
-import searchImg from "../../images/search.svg";
-import userImg from "../../images/user.svg";
+    accountUrl, addressBookUrl, baseUrl, orderHistoryUrl, paymentOptionsUrl, walletHistoryUrl,
+} from '../../routes';
+import { CartContext } from '../CartProvider/context';
+import NavDropdown from './NavDropdown';
+import { TypedMainMenuQuery } from './queries';
 
 const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
@@ -124,6 +109,11 @@ const MainMenu: React.FC = () => {
                               <li>
                                 <Link to={orderHistoryUrl}>
                                   <Trans id="Order history" />
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to={walletHistoryUrl}>
+                                  <Trans id="Wallet History" />
                                 </Link>
                               </li>
                               <li>

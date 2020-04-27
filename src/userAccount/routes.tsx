@@ -7,6 +7,7 @@ import { OrderDetails } from "./views";
 export const baseUrl = "/my-account/";
 export const userOrderDetailsUrl = `${baseUrl}order/:id/`;
 export const orderHistoryUrl = `${baseUrl}order/history/`;
+export const userWalletDetailsUrl = `${baseUrl}wallet/`;
 
 const Routes: React.FC = () => (
   <Switch>

@@ -358,6 +358,14 @@ export enum ProductOrderField {
 /**
  * An enumeration.
  */
+export enum WalletTransactionType {
+  Credit = "Credit",
+  Debit = "Debit",
+}
+
+/**
+ * An enumeration.
+ */
 export enum WishlistErrorCode {
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
   INVALID = "INVALID",

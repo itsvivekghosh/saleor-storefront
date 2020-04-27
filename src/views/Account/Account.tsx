@@ -1,24 +1,20 @@
-import * as React from "react";
-import Media from "react-responsive";
-import { RouteComponentProps, withRouter } from "react-router";
+import './scss/index.scss';
 
-import { useUserDetails } from "@sdk/react";
-import { smallScreen } from "@styles/constants";
-import AddressBook from "../../account/AddressBook/AddressBook";
+import * as React from 'react';
+import Media from 'react-responsive';
+import { RouteComponentProps, withRouter } from 'react-router';
 
-import "./scss/index.scss";
+import { AccountMenu, AccountMenuMobile } from '@components/molecules';
+import { AccountTab, OrdersHistory } from '@components/views';
+import { useUserDetails } from '@sdk/react';
+import { smallScreen } from '@styles/constants';
 
+import AddressBook from '../../account/AddressBook/AddressBook';
+import { WalletList } from '../../account/WalletDetails';
+import { Breadcrumbs, Loader } from '../../components';
 import {
-  accountUrl,
-  addressBookUrl,
-  baseUrl,
-  orderHistoryUrl,
-  paymentOptionsUrl
-} from "../../routes";
-
-import { AccountMenu, AccountMenuMobile } from "@components/molecules";
-import { AccountTab, OrdersHistory } from "@components/views";
-import { Breadcrumbs, Loader } from "../../components";
+    accountUrl, addressBookUrl, baseUrl, orderHistoryUrl, paymentOptionsUrl, walletHistoryUrl,
+} from '../../routes';
 
 const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
@@ -35,6 +31,9 @@ const returnTab: any = (path: string, userDetails, history) => {
       tabContent = <OrdersHistory {...{ history }} />;
       break;
     }
+    case walletHistoryUrl: {
+      tabContent = <WalletList user={userDetails} history={history} />
+    }
   }
   return tabContent;
 };
@@ -45,6 +44,7 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   const links = [
     accountUrl,
     orderHistoryUrl,
+    walletHistoryUrl,
     addressBookUrl,
     paymentOptionsUrl,
   ];

@@ -36,6 +36,7 @@ export const orderHistoryUrl = `${baseUrl}order-history/`;
 export const addressBookUrl = `${baseUrl}address-book/`;
 export const paymentOptionsUrl = `${baseUrl}payment-options/`;
 export const passwordResetUrl = `${baseUrl}reset-password/`;
+export const walletHistoryUrl = `${baseUrl}wallet-history/`
 
 export const Routes: React.FC = () => (
   <Switch>
@@ -54,6 +55,7 @@ export const Routes: React.FC = () => (
     <Route path={accountUrl} component={Account} />
     <Route path={accountConfirmUrl} component={AccountConfirm} />
     <Route path={orderHistoryUrl} component={Account} />
+    <Route path={walletHistoryUrl} component={Account} />
     <Route path={addressBookUrl} component={Account} />
     <Route path={paymentOptionsUrl} component={Account} />
     <Route path={passwordResetUrl} component={PasswordReset} />
