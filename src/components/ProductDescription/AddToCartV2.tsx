@@ -46,10 +46,10 @@ const AddToCartV2: React.FC<{
                           e.preventDefault();
                           e.stopPropagation();
 
-                          if (process.env.REDIRECT_TO_APP_STORE) {
-                            window.location.href = `https://onelink.to/yub375`;
-                            return;
-                          }
+                          // if (process.env.REDIRECT_TO_APP_STORE) {
+                          //   window.location.href = `https://onelink.to/yub375`;
+                          //   return;
+                          // }
 
                           if (user && !checkout) {
                             createCheckout({

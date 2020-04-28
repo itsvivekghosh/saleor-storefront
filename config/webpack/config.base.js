@@ -113,7 +113,7 @@ module.exports = ({ sourceDir, distDir }) => ({
     new webpack.EnvironmentPlugin({
       API_URI: "http://localhost:8000/graphql/",
       SERVICE_WORKER_TIMEOUT: "60000",
-      REDIRECT_TO_APP_STORE: process.env.REDIRECT_TO_APP_STORE,
+      // REDIRECT_TO_APP_STORE: process.env.REDIRECT_TO_APP_STORE,
     }),
   ],
   node: {
