@@ -358,6 +358,17 @@ export enum ProductOrderField {
 /**
  * An enumeration.
  */
+export enum WalletRechargeStatus {
+  abandoned = "abandoned",
+  failed = "failed",
+  initiated = "initiated",
+  payment_created = "payment_created",
+  successful = "successful",
+}
+
+/**
+ * An enumeration.
+ */
 export enum WalletTransactionType {
   Credit = "Credit",
   Debit = "Debit",
@@ -424,6 +435,11 @@ export interface ProductOrder {
   direction: OrderDirection;
   attributeId?: string | null;
   field?: ProductOrderField | null;
+}
+
+export interface WalletRechargePaymentInput {
+  gateway: string;
+  amount?: any | null;
 }
 
 //==============================================================

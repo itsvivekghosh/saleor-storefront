@@ -50,8 +50,8 @@ export interface getUserWallets_wallets_edges_node_walletTransactions {
    * The ID of the object.
    */
   id: string;
-  transactionId: any | null;
   created: any;
+  transactionId: number | null;
   transactionType: WalletTransactionType | null;
   amount: number;
   ledgerAmount: number;

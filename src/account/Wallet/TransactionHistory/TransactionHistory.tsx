@@ -64,7 +64,7 @@ export const TransactionHistory: React.FC<IProps> = ({
                 wallet.walletTransactions.map((walletTransaction, index) => {
                   const date = new Date(walletTransaction.created);
                   return (
-                    <S.Row key={walletTransaction.id}>
+                    <S.Row key={index}>
                       <S.IndexNumber>{index + 1}</S.IndexNumber>
                       {matches ? (
                         <>

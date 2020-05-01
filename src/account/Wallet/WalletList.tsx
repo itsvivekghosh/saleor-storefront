@@ -6,7 +6,7 @@ import * as React from "react";
 import { Loader } from "@components/atoms";
 
 import { TypedGetUserWalletsQuery } from "./queries";
-import { getUserWallets_wallets_edges_node } from "./types/getUserWallets";
+import { getUserWallets_wallets_edges_node } from "./types";
 import { WalletSummary } from "./WalletSummary";
 
 interface IProps {
@@ -40,7 +40,10 @@ export class WalletList extends React.Component<IProps, IState> {
           ) : (
             <div>
               {this.state.wallets.map(wallet => (
-                <WalletSummary wallet={wallet} history={this.props.history}></WalletSummary>
+                <WalletSummary
+                  wallet={wallet}
+                  history={this.props.history}
+                ></WalletSummary>
               ))}
             </div>
           );

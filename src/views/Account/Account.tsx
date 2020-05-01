@@ -10,7 +10,7 @@ import { useUserDetails } from '@sdk/react';
 import { smallScreen } from '@styles/constants';
 
 import AddressBook from '../../account/AddressBook/AddressBook';
-import { WalletList } from '../../account/WalletDetails';
+import { WalletList } from '../../account/Wallet';
 import { Breadcrumbs, Loader } from '../../components';
 import {
     accountUrl, addressBookUrl, baseUrl, orderHistoryUrl, paymentOptionsUrl, walletHistoryUrl,
