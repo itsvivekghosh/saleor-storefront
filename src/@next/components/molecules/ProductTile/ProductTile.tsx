@@ -1,21 +1,17 @@
-import isEqual from "lodash/isEqual";
-import React from "react";
-import { Link } from "react-router-dom";
+import isEqual from 'lodash/isEqual';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { TaxedMoney } from "@components/containers";
-import { Thumbnail } from "@components/molecules";
-import { ProductVariantPicker } from "@components/organisms";
-import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
-import { IProductVariantsAttributesSelectedValues } from "@types";
+import { TaxedMoney } from '@components/containers';
+import { Thumbnail } from '@components/molecules';
+import { ProductVariantPicker } from '@components/organisms';
+import { ProductDetails_product_variants } from '@sdk/queries/types/ProductDetails';
+import { IProductVariantsAttributesSelectedValues } from '@types';
 
-import {
-  CartContext,
-  CartLine,
-} from "../../../../components/CartProvider/context";
-import AddToCartV2 from "../../../../components/ProductDescription/AddToCartV2";
-import { generateProductUrl } from "../../../../core/utils";
-import * as S from "./styles";
-import { IProps, IState } from "./types";
+import AddToCartV2 from '../../../../components/ProductDescription/AddToCartV2';
+import { generateProductUrl } from '../../../../core/utils';
+import * as S from './styles';
+import { IProps, IState } from './types';
 
 export class ProductTile extends React.Component<IProps, IState> {
   constructor(props: IProps) {
@@ -96,11 +92,14 @@ export class ProductTile extends React.Component<IProps, IState> {
     }
   };
 
-  canAddToCart = (lines: CartLine[]) => {
+
+  canAddToCart = () => {
+    const { items } = this.props;
     const { variant, quantity, variantStock } = this.state;
-    const cartLine = lines.find(({ variantId }) => variantId === variant);
-    const syncedQuantityWithCart = cartLine
-      ? quantity + cartLine.quantity
+
+    const cartItem = items?.find(item => item.variant.id === variant);
+    const syncedQuantityWithCart = cartItem
+      ? quantity + (cartItem?.quantity || 0)
       : quantity;
     return quantity !== 0 && variant && variantStock >= syncedQuantityWithCart;
   };
@@ -143,15 +142,11 @@ export class ProductTile extends React.Component<IProps, IState> {
               </S.Details>
               <S.AddToCartRow>
                 <S.Price>{this.getProductPrice()}</S.Price>
-                <CartContext.Consumer>
-                  {({ lines }) => (
                     <AddToCartV2
                       variantId={this.state.variant}
-                      disabled={!this.canAddToCart(lines)}
+                      disabled={!this.canAddToCart()}
                       largeButtons={true}
                     />
-                  )}
-                </CartContext.Consumer>
               </S.AddToCartRow>
             </S.DetailsColumn>
           </S.Grid>

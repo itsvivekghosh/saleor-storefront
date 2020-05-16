@@ -43,3 +43,11 @@ display: inline-block;
   text-shadow: -1px -1px 0 rgba(15, 73, 168, 0.66);
   transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
 `;
+
+export const Tile = styled.label<{ checked: boolean }>`
+  display: block;
+  background-color: ${props => props.theme.colors.light};
+  padding: 20px;
+  ${props => props.checked && `border: 2px solid #21125E;`}
+  cursor: pointer;
+`;

@@ -17,7 +17,7 @@ export const Tile = styled.div`
   flex-basis: calc(50% - 3rem);
   overflow: hidden;
 
-  ${media.mediumScreen`
+  ${media.largeScreen`
     flex-basis: calc(50% - 2rem);
   `}
 `;
@@ -40,14 +40,15 @@ export const LogoWrapper = styled.img`
 
   width: 6rem;
 
-  ${media.mediumScreen`
-    width: 4rem;
-  `}
 
-  ${media.mediumScreen`
-    height: 30px;
-  `}
+    ${media.largeScreen`
+      width: 4rem;
+    `}
 
+    ${media.largeScreen`
+      height: 30px;
+    `}
+  }
 `;
 
 export const IconWrapper = styled.button`

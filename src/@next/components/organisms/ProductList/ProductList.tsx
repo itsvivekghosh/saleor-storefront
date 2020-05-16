@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import { Button, Loader } from '@components/atoms';
-import { ProductTile } from '@components/molecules';
+import { Button, Loader } from "@components/atoms";
+import { ProductTile } from "@components/molecules";
+import { useCart } from "@sdk/react";
 
-import * as S from './styles';
-import { IProps } from './types';
+import * as S from "./styles";
+import { IProps } from "./types";
 
 export const ProductList: React.FC<IProps> = ({
   products,
@@ -12,11 +13,12 @@ export const ProductList: React.FC<IProps> = ({
   loading = false,
   onLoadMore = () => null,
 }: IProps) => {
+  const { items } = useCart();
   return (
     <>
       <S.List>
         {products.map(product => (
-          <ProductTile product={product} />
+          <ProductTile product={product} items={items} />
         ))}
       </S.List>
       <S.Loader>
@@ -24,7 +26,11 @@ export const ProductList: React.FC<IProps> = ({
           <Loader />
         ) : (
           canLoadMore && (
-            <Button color="secondary" onClick={onLoadMore}>
+            <Button
+              data-cy="load-more_button"
+              color="secondary"
+              onClick={onLoadMore}
+            >
               More +
             </Button>
           )

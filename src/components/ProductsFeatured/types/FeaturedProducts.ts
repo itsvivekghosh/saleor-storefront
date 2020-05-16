@@ -453,5 +453,5 @@ export interface FeaturedProducts {
   /**
    * Return information about the shop.
    */
-  shop: FeaturedProducts_shop | null;
+  shop: FeaturedProducts_shop;
 }

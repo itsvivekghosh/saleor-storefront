@@ -91,11 +91,11 @@ module.exports = ({ sourceDir, distDir }) => ({
     new HtmlWebpackPlugin({
       filename: `${distDir}/index.html`,
       template: `${sourceDir}/index.html`,
+      API_URI: process.env.API_URI,
     }),
     new ForkTsCheckerWebpackPlugin({
       tslint: true,
       exclude: "node_modules",
-      async: false,
     }),
     // PWA plugins
     new WebappWebpackPlugin({
@@ -112,8 +112,6 @@ module.exports = ({ sourceDir, distDir }) => ({
     }),
     new webpack.EnvironmentPlugin({
       API_URI: "http://localhost:8000/graphql/",
-      SERVICE_WORKER_TIMEOUT: "60000",
-      // REDIRECT_TO_APP_STORE: process.env.REDIRECT_TO_APP_STORE,
     }),
   ],
   node: {

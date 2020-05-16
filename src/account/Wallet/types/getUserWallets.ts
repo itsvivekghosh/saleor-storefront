@@ -51,7 +51,7 @@ export interface getUserWallets_wallets_edges_node_walletTransactions {
    */
   id: string;
   created: any;
-  transactionId: number | null;
+  transactionId: string | null;
   transactionType: WalletTransactionType | null;
   amount: number;
   ledgerAmount: number;

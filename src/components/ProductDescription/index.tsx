@@ -1,27 +1,25 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import isEqual from "lodash/isEqual";
-import * as React from "react";
+import isEqual from 'lodash/isEqual';
+import * as React from 'react';
 
-// import { TextField } from "@components/molecules";
-import { ProductVariantPicker } from "@components/organisms";
+import { ProductVariantPicker } from '@components/organisms';
 import {
-  ProductDetails_product_pricing,
-  ProductDetails_product_variants,
-  ProductDetails_product_variants_pricing,
-} from "@sdk/queries/types/ProductDetails";
-import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
+    ProductDetails_product_pricing, ProductDetails_product_variants,
+    ProductDetails_product_variants_pricing,
+} from '@sdk/queries/types/ProductDetails';
+import { ICheckoutModelLine } from '@sdk/repository';
+import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from '@types';
 
-import { TaxedMoney } from "../../@next/components/containers";
-import { CartContext, CartLine } from "../CartProvider/context";
-import AddToCartV2 from "./AddToCartV2";
-// import AddToWishlist from "./AddToWishlist";
+import { TaxedMoney } from '../../@next/components/containers';
+import AddToCartV2 from './AddToCartV2';
 
 interface ProductDescriptionProps {
   productId: string;
   productVariants: ProductDetails_product_variants[];
   name: string;
   pricing: ProductDetails_product_pricing;
+  items: ICheckoutModelLine[];
   addToCart(varinatId: string, quantity?: number): void;
   setVariantId(variantId: string);
 }
@@ -103,22 +101,41 @@ class ProductDescription extends React.Component<
     }
   };
 
-  handleSubmit = () => {
-    this.props.addToCart(this.state.variant, this.state.quantity);
-  };
-
-  canAddToCart = (lines: CartLine[]) => {
+  canAddToCart = () => {
+    const { items } = this.props;
     const { variant, quantity, variantStock } = this.state;
-    const cartLine = lines.find(({ variantId }) => variantId === variant);
-    const syncedQuantityWithCart = cartLine
-      ? quantity + cartLine.quantity
+
+    const cartItem = items?.find(item => item.variant.id === variant);
+    const syncedQuantityWithCart = cartItem
+      ? quantity + (cartItem?.quantity || 0)
       : quantity;
     return quantity !== 0 && variant && variantStock >= syncedQuantityWithCart;
   };
 
+  handleSubmit = () => {
+    this.props.addToCart(this.state.variant, this.state.quantity);
+  };
+
+  getAvailableQuantity = () => {
+    const { items } = this.props;
+    const { variant, variantStock } = this.state;
+
+    const cartItem = items?.find(item => item.variant.id === variant);
+    const quantityInCart = cartItem?.quantity || 0;
+
+    return variantStock - quantityInCart;
+  };
+
+  handleQuantityChange = (quantity: number) => {
+    this.setState({
+      quantity,
+    });
+  };
+
   render() {
     const { name } = this.props;
-    // const { quantity } = this.state;
+
+    const { variant, quantity } = this.state;
 
     return (
       <div className="product-description">
@@ -131,29 +148,12 @@ class ProductDescription extends React.Component<
             selectSidebar={false}
           />
         </div>
-        {/* <div className="product-description__quantity-input">
-          <TextField
-            type="number"
-            label="Quantity"
-            min="1"
-            value={quantity || ""}
-            onChange={e =>
-              this.setState({ quantity: Math.max(1, Number(e.target.value)) })
-            }
-          />
-        </div> */}
-        <CartContext.Consumer>
-          {({ lines }) => (
-            <AddToCartV2
-              variantId={this.state.variant}
-              disabled={!this.canAddToCart(lines)}
-              largeButtons={true}
-            />
-          )}
-        </CartContext.Consumer>
-        {/* <div className="product-description__add-to-wishlist">
-          <AddToWishlist productId={this.props.productId} />
-        </div> */}
+
+        <AddToCartV2
+          variantId={variant}
+          disabled={!this.canAddToCart()}
+          largeButtons={true}
+        />
       </div>
     );
   }

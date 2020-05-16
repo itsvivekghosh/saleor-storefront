@@ -5,16 +5,14 @@ import Media from 'react-responsive';
 import { RouteComponentProps, withRouter } from 'react-router';
 
 import { AccountMenu, AccountMenuMobile } from '@components/molecules';
-import { AccountTab, OrdersHistory } from '@components/views';
+import { AccountTab, OrdersHistory } from '@pages';
 import { useUserDetails } from '@sdk/react';
 import { smallScreen } from '@styles/constants';
 
 import AddressBook from '../../account/AddressBook/AddressBook';
 import { WalletList } from '../../account/Wallet';
+import { accountUrl, addressBookUrl, baseUrl, orderHistoryUrl, walletHistoryUrl } from '../../app/routes';
 import { Breadcrumbs, Loader } from '../../components';
-import {
-    accountUrl, addressBookUrl, baseUrl, orderHistoryUrl, paymentOptionsUrl, walletHistoryUrl,
-} from '../../routes';
 
 const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
@@ -41,13 +39,8 @@ const returnTab: any = (path: string, userDetails, history) => {
 const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   const { data: user, loading } = useUserDetails();
 
-  const links = [
-    accountUrl,
-    orderHistoryUrl,
-    walletHistoryUrl,
-    addressBookUrl,
-    paymentOptionsUrl,
-  ];
+
+  const links = [accountUrl, orderHistoryUrl, walletHistoryUrl, addressBookUrl];
 
   if (loading) {
     return <Loader />;
@@ -72,7 +65,7 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
           </div>
         </Media>
         <div className="account__content">
-          {returnTab(match.path, user, history)}
+          {user && returnTab(match.path, user, history)}
         </div>
       </div>
     </div>

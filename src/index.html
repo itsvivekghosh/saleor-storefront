@@ -12,6 +12,8 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="<%= htmlWebpackPlugin.options.API_URI %>">
+    <link rel="preconnect" href="https://rsms.me/inter/inter.css" rel="stylesheet">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
       if (window.Cypress) {

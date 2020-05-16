@@ -87,7 +87,7 @@ export interface walletRechargePaymentCreate_walletRechargePaymentCreate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: walletRechargePaymentCreate_walletRechargePaymentCreate_errors[] | null;
+  errors: walletRechargePaymentCreate_walletRechargePaymentCreate_errors[];
   /**
    * Wallet recharge object.
    */

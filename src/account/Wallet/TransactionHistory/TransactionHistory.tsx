@@ -3,42 +3,23 @@ import Media from "react-media";
 import { ThemeContext } from "styled-components";
 
 import { Money } from "@components/containers";
-import { Trans } from "@lingui/react";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
 const header = (matches: boolean) => (
   <S.HeaderRow>
-    <S.IndexNumber>
-      <Trans id="SN" />
-    </S.IndexNumber>
+    <S.IndexNumber>SN</S.IndexNumber>
     {matches && (
       <>
-        <S.TxnId>
-          <Trans id="Txn Id" />
-        </S.TxnId>
-        <S.TxnDate>
-          <Trans id="Date/Time" />
-        </S.TxnDate>
-        <S.TransactionType>
-          <Trans id="Type" />
-        </S.TransactionType>
-        <S.Amount>
-          <Trans id="Amount" />
-        </S.Amount>
-        <S.Ledgeramount>
-          <Trans id="Ledger Amount" />
-        </S.Ledgeramount>
-        <S.Source>
-          <Trans id="Source" />
-        </S.Source>
-        <S.Description>
-          <Trans id="Description" />
-        </S.Description>
-        <S.Reason>
-          <Trans id="Reason" />
-        </S.Reason>
+        <S.TxnId>Txn Id</S.TxnId>
+        <S.TxnDate>Date/Time</S.TxnDate>
+        <S.TransactionType>Type</S.TransactionType>
+        <S.Amount>Amount</S.Amount>
+        <S.Ledgeramount>Ledger Amount</S.Ledgeramount>
+        <S.Source>Source</S.Source>
+        <S.Description>Description</S.Description>
+        <S.Reason>Reason</S.Reason>
       </>
     )}
   </S.HeaderRow>

@@ -4,11 +4,23 @@ export const BASE_URL = "/";
 export const PRODUCTS_PER_PAGE = 30;
 export const SUPPORT_EMAIL = "life@go4life.in";
 export const PROVIDERS = {
-  BRAINTREE: "Braintree",
-  DUMMY: "Dummy",
-  RAZORPAY: "Razorpay",
-  STRIPE: "Stripe",
-  WALLET: "Wallet",
+  BRAINTREE: {
+    label: "Braintree",
+  },
+  DUMMY: {
+    label: "Dummy",
+  },
+  RAZORPAY: {
+    href: "https://checkout.razorpay.com/v1/checkout.js",
+    label: "Razorpay",
+  },
+  STRIPE: {
+    href: "https://js.stripe.com/v3/",
+    label: "Stripe",
+  },
+  WALLET: {
+    label: "Wallet",
+  },
 };
 export const STATIC_PAGES = [
   {
@@ -49,10 +61,54 @@ export const SOCIAL_MEDIA = [
 ];
 export const META_DEFAULTS = {
   custom: [],
-  description:
-    "Online store by Go4Life",
+  description: "Online store by Go4Life",
   image: `${window.location.origin}${require("../images/logo.png")}`,
   title: "Go4Life",
+
   type: "website",
   url: window.location.origin,
 };
+export enum CheckoutStep {
+  Address = 1,
+  Shipping,
+  Payment,
+  Review,
+}
+export const CHECKOUT_STEPS = [
+  {
+    index: 0,
+    link: "/checkout/address",
+    name: "Address",
+    nextActionName: "Continue to Shipping",
+    nextStepLink: "/checkout/shipping",
+    onlyIfShippingRequired: true,
+    step: CheckoutStep.Address,
+  },
+  {
+    index: 1,
+    link: "/checkout/shipping",
+    name: "Shipping",
+    nextActionName: "Continue to Payment",
+    nextStepLink: "/checkout/payment",
+    onlyIfShippingRequired: true,
+    step: CheckoutStep.Shipping,
+  },
+  {
+    index: 2,
+    link: "/checkout/payment",
+    name: "Payment",
+    nextActionName: "Continue to Review",
+    nextStepLink: "/checkout/review",
+    onlyIfShippingRequired: false,
+    step: CheckoutStep.Payment,
+  },
+  {
+    index: 3,
+    link: "/checkout/review",
+    name: "Review",
+    nextActionName: "Place order",
+    nextStepLink: "/order-finalized",
+    onlyIfShippingRequired: false,
+    step: CheckoutStep.Review,
+  },
+];

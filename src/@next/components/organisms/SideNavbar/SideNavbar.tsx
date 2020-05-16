@@ -1,14 +1,14 @@
-import React from "react";
-import Media from "react-responsive";
-import { Transition } from "react-transition-group";
+import LogoSmall from 'images/logo-small.png';
+import React from 'react';
+import Media from 'react-responsive';
+import { Transition } from 'react-transition-group';
 
-import { Icon } from "@components/atoms";
-import { mediumScreen } from "@styles/constants";
-import LogoSmall from "images/logo-small.png";
+import { Icon } from '@components/atoms';
+import { largeScreen } from '@styles/constants';
 
-import { Overlay } from "../";
-import * as S from "./styles";
-import { IProps, IState } from "./types";
+import { Overlay } from '../';
+import * as S from './styles';
+import { IProps, IState } from './types';
 
 const TopBar: React.FC<{ onHide: () => void }> = ({ children, onHide }) => (
   <S.Bar>
@@ -92,7 +92,7 @@ export const SideNavbar: React.FC<IProps> = ({
               <S.NavLink fullWidth type="side" item={item} />
             )
           )}
-          <Media maxWidth={mediumScreen}>
+          <Media maxWidth={largeScreen}>
             <S.Item>
               <S.Link to="/wishlist">
                 <S.IconWrapper>

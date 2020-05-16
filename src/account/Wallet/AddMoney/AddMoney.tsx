@@ -1,12 +1,11 @@
 import * as React from "react";
 import { generatePath, Redirect } from "react-router";
 
-import { Button, Loader } from "@components/atoms";
+import { Button, Loader, Radio } from "@components/atoms";
 import { Money } from "@components/containers";
 
-import { Option } from "../../../checkout/components";
+import { walletHistoryUrl } from "../../../app/routes";
 import { PROVIDERS } from "../../../core/config";
-import { walletHistoryUrl } from "../../../routes";
 import {
   TypedGetWalletRechargeAvailablePaymentGateways,
   TypedWalletRechargeByIdQuery,
@@ -190,12 +189,22 @@ export class AddMoneyToWallet extends React.Component<IProps, IState> {
                         //   paymentGatewayConfig: provider.config,
                         // };
                         switch (providerName) {
-                          case PROVIDERS.RAZORPAY:
+                          case PROVIDERS.RAZORPAY.label:
                             return (
-                              <Option
-                                label="Razorpay Payment Gateway"
-                                {...optionProps}
-                              ></Option>
+                              <S.Tile checked={optionProps.selected}>
+                                <Radio
+                                  data-cy="checkoutPaymentGatewayRazorpayInput"
+                                  name="payment-method"
+                                  value="Razorpay"
+                                  checked={optionProps.selected}
+                                  onChange={optionProps.onSelect}
+                                  customLabel={true}
+                                >
+                                  <span data-cy="checkoutPaymentGatewayRazorpayName">
+                                    Razorpay Payment Gateway
+                                  </span>
+                                </Radio>
+                              </S.Tile>
                             );
                         }
                       })}

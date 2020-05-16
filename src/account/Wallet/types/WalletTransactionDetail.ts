@@ -15,7 +15,7 @@ export interface WalletTransactionDetail {
    */
   id: string;
   created: any;
-  transactionId: number | null;
+  transactionId: string | null;
   transactionType: WalletTransactionType | null;
   amount: number;
   ledgerAmount: number;

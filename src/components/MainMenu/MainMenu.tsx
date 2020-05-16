@@ -1,32 +1,48 @@
-import './scss/index.scss';
+import "./scss/index.scss";
 
-import * as React from 'react';
-import Media from 'react-media';
-import { Link } from 'react-router-dom';
-import ReactSVG from 'react-svg';
+import React from "react";
+import Media from "react-media";
+import { Link } from "react-router-dom";
+import ReactSVG from "react-svg";
 
-import { Trans } from '@lingui/react';
-import { useSignOut, useUserDetails } from '@sdk/react';
+import { useCart, useSignOut, useUserDetails } from "@sdk/react";
 
-import { MenuDropdown, Offline, Online, OverlayContext, OverlayTheme, OverlayType } from '../';
-import { maybe } from '../../core/utils';
-import { mediumScreen, smallScreen } from '../../globalStyles/scss/variables.scss';
-import cartImg from '../../images/cart.svg';
-import hamburgerHoverImg from '../../images/hamburger-hover.svg';
-import hamburgerImg from '../../images/hamburger.svg';
-import logoImg from '../../images/logo.png';
-import searchImg from '../../images/search.svg';
-import userImg from '../../images/user.svg';
 import {
-    accountUrl, addressBookUrl, baseUrl, orderHistoryUrl, paymentOptionsUrl, walletHistoryUrl,
-} from '../../routes';
-import { CartContext } from '../CartProvider/context';
-import NavDropdown from './NavDropdown';
-import { TypedMainMenuQuery } from './queries';
+  MenuDropdown,
+  Offline,
+  Online,
+  OverlayContext,
+  OverlayTheme,
+  OverlayType,
+} from "../";
+import * as appPaths from "../../app/routes";
+import { maybe } from "../../core/utils";
+import {
+  mediumScreen,
+  smallScreen,
+} from "../../globalStyles/scss/variables.scss";
+import cartImg from "../../images/cart.svg";
+import hamburgerHoverImg from "../../images/hamburger-hover.svg";
+import hamburgerImg from "../../images/hamburger.svg";
+import logoImg from "../../images/logo.png";
+import searchImg from "../../images/search.svg";
+import userImg from "../../images/user.svg";
+import NavDropdown from "./NavDropdown";
+import { TypedMainMenuQuery } from "./queries";
 
 const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
+  const { items } = useCart();
+
+  const handleSignOut = () => {
+    signOut();
+  };
+
+  const cartItemsQuantity =
+    (items &&
+      items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
+    0;
 
   return (
     <OverlayContext.Consumer>
@@ -67,12 +83,73 @@ const MainMenu: React.FC = () => {
                       query={{ minWidth: mediumScreen }}
                       render={() =>
                         items.map(item => (
-                          <li className="main-menu__item" key={item.id}>
+                          <li
+                            data-cy="main-menu__item"
+                            className="main-menu__item"
+                            key={item.id}
+                          >
                             <NavDropdown overlay={overlayContext} {...item} />
                           </li>
                         ))
                       }
                     />
+                    <Online>
+                      <Media
+                        query={{ maxWidth: smallScreen }}
+                        render={() => (
+                          <>
+                            {user ? (
+                              <MenuDropdown
+                                suffixClass={"__rightdown"}
+                                head={
+                                  <li className="main-menu__icon main-menu__user--active">
+                                    <ReactSVG path={userImg} />
+                                  </li>
+                                }
+                                content={
+                                  <ul className="main-menu__dropdown">
+                                    <li data-testid="my_account__link">
+                                      <Link to={appPaths.accountUrl}>
+                                        My Account
+                                      </Link>
+                                    </li>
+                                    <li data-testid="order_history__link">
+                                      <Link to={appPaths.orderHistoryUrl}>
+                                        Order history
+                                      </Link>
+                                    </li>
+                                    <li data-testid="address_book__link">
+                                      <Link to={appPaths.addressBookUrl}>
+                                        Address book
+                                      </Link>
+                                    </li>
+                                    <li
+                                      onClick={handleSignOut}
+                                      data-testid="logout-link"
+                                    >
+                                      Log Out
+                                    </li>
+                                  </ul>
+                                }
+                              />
+                            ) : (
+                              <li
+                                data-testid="login-btn"
+                                className="main-menu__icon"
+                                onClick={() =>
+                                  overlayContext.show(
+                                    OverlayType.login,
+                                    OverlayTheme.left
+                                  )
+                                }
+                              >
+                                <ReactSVG path={userImg} />
+                              </li>
+                            )}
+                          </>
+                        )}
+                      />
+                    </Online>
                   </ul>
                 );
               }}
@@ -80,8 +157,8 @@ const MainMenu: React.FC = () => {
           </div>
 
           <div className="main-menu__center">
-            <Link to={baseUrl}>
-              <img src={logoImg} />
+            <Link to={appPaths.baseUrl}>
+              <ReactSVG path={logoImg} />
             </Link>
           </div>
 
@@ -101,32 +178,28 @@ const MainMenu: React.FC = () => {
                           }
                           content={
                             <ul className="main-menu__dropdown">
-                              <li>
-                                <Link to={accountUrl}>
-                                  <Trans id="My Account" />
+                              <li data-testid="my_account__link">
+                                <Link to={appPaths.accountUrl}>My Account</Link>
+                              </li>
+                              <li data-testid="order_history__link">
+                                <Link to={appPaths.orderHistoryUrl}>
+                                  Order history
                                 </Link>
                               </li>
                               <li>
-                                <Link to={orderHistoryUrl}>
-                                  <Trans id="Order history" />
+                                <Link to={appPaths.walletHistoryUrl}>
+                                  Wallet History
                                 </Link>
                               </li>
-                              <li>
-                                <Link to={walletHistoryUrl}>
-                                  <Trans id="Wallet History" />
+                              <li data-testid="address_book__link">
+                                <Link to={appPaths.addressBookUrl}>
+                                  Address book
                                 </Link>
                               </li>
-                              <li>
-                                <Link to={addressBookUrl}>
-                                  <Trans id="Address book" />
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to={paymentOptionsUrl}>
-                                  Payment options
-                                </Link>
-                              </li>
-                              <li onClick={signOut} data-testid="logout-link">
+                              <li
+                                onClick={handleSignOut}
+                                data-testid="logout-link"
+                              >
                                 Log Out
                               </li>
                             </ul>
@@ -149,26 +222,19 @@ const MainMenu: React.FC = () => {
                     </>
                   )}
                 />
-                <CartContext.Consumer>
-                  {cart => (
-                    <li
-                      className="main-menu__icon main-menu__cart"
-                      onClick={() => {
-                        overlayContext.show(
-                          OverlayType.cart,
-                          OverlayTheme.right
-                        );
-                      }}
-                    >
-                      <ReactSVG path={cartImg} />
-                      {cart.getQuantity() > 0 ? (
-                        <span className="main-menu__cart__quantity">
-                          {cart.getQuantity()}
-                        </span>
-                      ) : null}
-                    </li>
-                  )}
-                </CartContext.Consumer>
+                <li
+                  className="main-menu__icon main-menu__cart"
+                  onClick={() => {
+                    overlayContext.show(OverlayType.cart, OverlayTheme.right);
+                  }}
+                >
+                  <ReactSVG path={cartImg} />
+                  {cartItemsQuantity > 0 ? (
+                    <span className="main-menu__cart__quantity">
+                      {cartItemsQuantity}
+                    </span>
+                  ) : null}
+                </li>
               </Online>
               <Offline>
                 <li className="main-menu__offline">
