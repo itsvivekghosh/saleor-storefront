@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
-import { TypedMutation } from "../../../core/mutations";
-import { createPayment, createPaymentVariables } from "./types/createPayment";
+import { TypedMutation } from "../../../../../core/mutations";
+import { createPayment, createPaymentVariables } from "./types/createPayments";
 
 const paymentMethodCreateMutation = gql`
   mutation createPayment($input: PaymentInput!, $checkoutId: ID!) {
@@ -12,7 +12,6 @@ const paymentMethodCreateMutation = gql`
       }
       payment {
         token
-        extraData
       }
     }
   }

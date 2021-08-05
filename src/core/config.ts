@@ -14,6 +14,9 @@ export const PROVIDERS = {
     href: "https://js.stripe.com/v3/",
     label: "Stripe",
   },
+  RAZORPAY: {
+    label: "Razorpay"
+  },
 };
 export const STATIC_PAGES = [
   {

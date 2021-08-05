@@ -14,6 +14,7 @@ import {
   shippingAddressUrl,
   shippingOptionsUrl,
 } from "../../routes";
+import { RAZORPAY_CARD_TYPE } from "../Payment/Gateways/Razorpay/types/razorpay";
 
 class Summary extends React.PureComponent<{
   checkout: Checkout;
@@ -84,7 +85,10 @@ class Summary extends React.PureComponent<{
           </h4>
           <p>
             {!!cardData
-              ? `Ending in ${cardData.lastDigits}`
+              // ? `Ending in ${cardData.lastDigits}`
+              ? cardData.ccType === RAZORPAY_CARD_TYPE
+                ? `Razorpay`
+                : `Ending in ${cardData.lastDigits}`
               : `Dummy: ${dummyStatus}`}
           </p>
         </div>

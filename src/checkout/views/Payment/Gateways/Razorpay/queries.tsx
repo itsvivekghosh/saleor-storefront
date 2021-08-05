@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-import { TypedMutation } from "../../../core/mutations";
+import { TypedMutation } from "../../../../../core/mutations";
 import { createPayment, createPaymentVariables } from "./types/createPayment";
 
 const paymentMethodCreateMutation = gql`
@@ -12,7 +12,6 @@ const paymentMethodCreateMutation = gql`
       }
       payment {
         token
-        extraData
       }
     }
   }

@@ -14,6 +14,8 @@ import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/utils";
 import { CheckoutContext } from "../../context";
 import { paymentUrl } from "../../routes";
+import { openRazorpayForm } from "../Payment/Gateways/Razorpay/razorpay-checkout";
+import { RAZORPAY_CARD_TYPE } from "../Payment/Gateways/Razorpay/types/razorpay";
 import { TypedCompleteCheckoutMutation } from "./queries";
 import Summary from "./Summary";
 import { completeCheckout } from "./types/completeCheckout";
@@ -120,13 +122,16 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                   <Button
                     type="submit"
                     disabled={loading}
-                    onClick={() =>
+                    onClick={async () => {
+                      if (cardData.ccType === RAZORPAY_CARD_TYPE) {
+                        await openRazorpayForm(checkout, cardData);
+                      }
                       completeCheckout({
                         variables: {
                           checkoutId: checkout.id,
                         },
-                      })
-                    }
+                      });
+                    }}
                   >
                     {loading ? "Loading" : "Place your order"}
                   </Button>
